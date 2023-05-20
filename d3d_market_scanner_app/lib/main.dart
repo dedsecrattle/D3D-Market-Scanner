@@ -1,3 +1,5 @@
+import 'package:d3d_market_scanner_app/views/login_view.dart';
+import 'package:d3d_market_scanner_app/views/register_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -6,7 +8,7 @@ void main() {
     theme: ThemeData(
       primarySwatch: Colors.blue,
     ),
-    home: const MyHome(),
+    home: const Login(),
   ));
 }
 
