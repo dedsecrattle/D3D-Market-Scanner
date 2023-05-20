@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "172757776620",
+    "project_id": "d3d-market-scanner1",
+    "storage_bucket": "d3d-market-scanner1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172757776620:android:a798e5ff347ad047d00dc9",
+        "android_client_info": {
+          "package_name": "com.example.d3d_market_scanner_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172757776620-t87pf33c665ocflkh453jt24842oetri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzlBejeI54F2WEdSY3VvV5wtFV-m4v3Hk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172757776620-t87pf33c665ocflkh453jt24842oetri.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
