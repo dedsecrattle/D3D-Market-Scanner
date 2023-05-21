@@ -1,4 +1,4 @@
-import 'package:d3d_market_scanner_app/views/email_verify_view.dart';
+import 'package:d3d_market_scanner_app/utils.dart';
 import 'package:d3d_market_scanner_app/views/login_view.dart';
 import 'package:d3d_market_scanner_app/views/register_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,10 +11,11 @@ Future main() async {
   runApp(MaterialApp(
     title: 'Flutter Demo',
     debugShowCheckedModeBanner: false,
+    scaffoldMessengerKey: Utils.message,
     theme: ThemeData(
       primarySwatch: Colors.blue,
     ),
-    home: const Register(),
+    home: const Login(),
   ));
 }
 

@@ -1,3 +1,4 @@
+import 'package:d3d_market_scanner_app/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -79,7 +80,9 @@ class _RegisterState extends State<Register> {
                       child: Column(
                         children: [
                           makeInput(
-                              label: "Email", textController: emailController),
+                              label: "Email",
+                              isEmail: true,
+                              textController: emailController),
                           makeInput(
                               label: "Password",
                               obsureText: true,
@@ -139,7 +142,8 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  Widget makeInput({label, textController, obsureText = false}) {
+  Widget makeInput(
+      {label, textController, isEmail = false, obsureText = false}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -154,6 +158,7 @@ class _RegisterState extends State<Register> {
         TextField(
           obscureText: obsureText,
           controller: textController,
+          keyboardType: isEmail ? TextInputType.emailAddress : null,
           decoration: const InputDecoration(
             contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
             enabledBorder: OutlineInputBorder(
@@ -178,9 +183,7 @@ class _RegisterState extends State<Register> {
           email: emailController.text.trim(),
           password: passwordController.text.trim());
     } on FirebaseAuthException catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(e.code),
-      ));
+      Utils.showSnackBar(e.message);
     }
   }
 }

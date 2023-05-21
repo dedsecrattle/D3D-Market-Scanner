@@ -1,3 +1,4 @@
+import 'package:d3d_market_scanner_app/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -76,7 +77,9 @@ class _LoginState extends State<Login> {
                   child: Column(
                     children: [
                       makeInput(
-                          label: "Email", textController: emailController),
+                          label: "Email",
+                          textController: emailController,
+                          isEmail: true),
                       makeInput(
                           label: "Password",
                           obsureText: true,
@@ -134,7 +137,8 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget makeInput({label, textController, obsureText = false}) {
+  Widget makeInput(
+      {label, textController, isEmail = false, obsureText = false}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -149,6 +153,7 @@ class _LoginState extends State<Login> {
         TextField(
           obscureText: obsureText,
           controller: textController,
+          keyboardType: isEmail ? TextInputType.emailAddress : null,
           decoration: const InputDecoration(
             contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
             enabledBorder: OutlineInputBorder(
@@ -168,8 +173,12 @@ class _LoginState extends State<Login> {
   }
 
   Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim());
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim());
+    } on FirebaseAuthException catch (e) {
+      Utils.showSnackBar(e.message);
+    }
   }
 }
