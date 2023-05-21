@@ -1,6 +1,7 @@
 import 'package:d3d_market_scanner_app/utils.dart';
 import 'package:d3d_market_scanner_app/views/login_view.dart';
 import 'package:d3d_market_scanner_app/views/register_view.dart';
+import 'package:d3d_market_scanner_app/views/reset_password_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ Future main() async {
     theme: ThemeData(
       primarySwatch: Colors.blue,
     ),
-    home: const Login(),
+    home: const MyHome(),
   ));
 }
 
