@@ -16,7 +16,7 @@ Future main() async {
     theme: ThemeData(
       primarySwatch: Colors.blue,
     ),
-    home: const MyHome(),
+    home: const Register(),
   ));
 }
 
