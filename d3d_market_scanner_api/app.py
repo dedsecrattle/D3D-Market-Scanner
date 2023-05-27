@@ -1,8 +1,14 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from scrapper import *
 import concurrent.futures
 
 app = Flask(__name__)
+
+
+
+@app.route('/')
+def Home():
+    return render_template('/index.html');
 
 
 @app.route('/fundamental-data', methods=['GET'])
@@ -14,6 +20,7 @@ def return_fundamental():
                 executor.submit(get_fundamental_data, i)
 
         return jsonify(fundamental_data)
+
 
 
 @app.route('/cot-data', methods=['GET'])
