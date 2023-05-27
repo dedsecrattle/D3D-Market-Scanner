@@ -1,10 +1,14 @@
 import 'package:d3d_market_scanner_app/utils.dart';
+import 'package:d3d_market_scanner_app/views/reset_password_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flare_flutter/flare_actor.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  final VoidCallback onClickedSignup;
+
+  const Login({Key? key, required this.onClickedSignup}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
@@ -133,6 +137,32 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
+              const SizedBox(height: 10),
+              GestureDetector(
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ResetPassword())),
+                child: const Text(
+                  'Forgot Your Password?',
+                  style: TextStyle(
+                      color: Colors.white,
+                      decoration: TextDecoration.underline),
+                ),
+              ),
+              const SizedBox(height: 10),
+              RichText(
+                  text: TextSpan(
+                      style: const TextStyle(color: Colors.white, fontSize: 15),
+                      text: 'No Account? ',
+                      children: [
+                    TextSpan(
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = widget.onClickedSignup,
+                        text: 'Register',
+                        style: const TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Colors.white,
+                            fontSize: 15))
+                  ]))
             ],
           ),
         ));

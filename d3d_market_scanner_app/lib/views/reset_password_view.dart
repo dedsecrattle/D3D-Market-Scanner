@@ -1,3 +1,4 @@
+import 'package:d3d_market_scanner_app/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,17 +29,9 @@ class _ResetPasswordState extends State<ResetPassword> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
+        title: const Text('Reset Your Password'),
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              size: 20,
-              color: Colors.black,
-            )),
         systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: SizedBox(
@@ -50,25 +43,25 @@ class _ResetPasswordState extends State<ResetPassword> {
             Column(
               children: [
                 Column(
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       "Reset Password",
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 20,
                     ),
                     Text(
                       "Please provide your Email to Reset Your Password!",
                       style: TextStyle(
                         fontSize: 15,
-                        color: Colors.grey[700],
+                        color: Colors.grey,
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 30,
                     )
                   ],

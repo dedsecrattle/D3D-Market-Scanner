@@ -3,10 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
+  final Function() onClickedSignIn;
+
+  const Register({Key? key, required this.onClickedSignIn}) : super(key: key);
+
   @override
   State<Register> createState() => _RegisterState();
 }
@@ -134,6 +136,21 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
               ),
+              const SizedBox(height: 10),
+              RichText(
+                  text: TextSpan(
+                      style: const TextStyle(color: Colors.white, fontSize: 15),
+                      text: 'Already have an Account? ',
+                      children: [
+                    TextSpan(
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = widget.onClickedSignIn,
+                        text: 'Login',
+                        style: const TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Colors.white,
+                            fontSize: 15))
+                  ]))
             ],
           ),
         ));

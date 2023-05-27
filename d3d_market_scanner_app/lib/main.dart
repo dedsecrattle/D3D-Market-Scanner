@@ -1,5 +1,8 @@
+import 'package:d3d_market_scanner_app/page/auth_page.dart';
 import 'package:d3d_market_scanner_app/utils.dart';
+import 'package:d3d_market_scanner_app/views/email_verify_view.dart';
 import 'package:d3d_market_scanner_app/views/login_view.dart';
+import 'package:d3d_market_scanner_app/views/reset_password_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -28,9 +31,9 @@ class MyHome extends StatelessWidget {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return const MainUI();
+              return const VerifyEmail();
             } else {
-              return const Login();
+              return const AuthPage();
             }
           }),
     );
