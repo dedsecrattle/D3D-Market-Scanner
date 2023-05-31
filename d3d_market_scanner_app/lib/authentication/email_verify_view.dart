@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:d3d_market_scanner_app/main.dart';
+import 'package:d3d_market_scanner_app/home_controller.dart';
 import 'package:d3d_market_scanner_app/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +56,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
   @override
   Widget build(BuildContext context) {
     if (isEmailVerified) {
-      return const MainUI();
+      return const HomeController();
     } else {
       return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -112,12 +112,12 @@ class _VerifyEmailState extends State<VerifyEmail> {
                       child: MaterialButton(
                         minWidth: double.infinity,
                         height: 60,
-                        onPressed: () {},
+                        onPressed: () => FirebaseAuth.instance.signOut(),
                         color: Colors.indigoAccent[400],
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40)),
                         child: const Text(
-                          "Resend Verification Email",
+                          "Log Out",
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,

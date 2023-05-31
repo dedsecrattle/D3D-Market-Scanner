@@ -1,5 +1,5 @@
 import 'package:d3d_market_scanner_app/utils.dart';
-import 'package:d3d_market_scanner_app/views/reset_password_view.dart';
+import 'package:d3d_market_scanner_app/authentication/reset_password_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/gestures.dart';

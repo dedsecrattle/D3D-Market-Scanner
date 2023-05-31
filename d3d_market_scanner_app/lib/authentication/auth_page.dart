@@ -1,7 +1,6 @@
-import 'package:d3d_market_scanner_app/views/login_view.dart';
-import 'package:d3d_market_scanner_app/views/register_view.dart';
+import 'package:d3d_market_scanner_app/authentication/login_view.dart';
+import 'package:d3d_market_scanner_app/authentication/register_view.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});

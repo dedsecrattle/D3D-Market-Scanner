@@ -1,11 +1,13 @@
-import 'package:d3d_market_scanner_app/page/auth_page.dart';
+import 'package:d3d_market_scanner_app/authentication/auth_page.dart';
+import 'package:d3d_market_scanner_app/home.dart';
 import 'package:d3d_market_scanner_app/utils.dart';
-import 'package:d3d_market_scanner_app/views/email_verify_view.dart';
-import 'package:d3d_market_scanner_app/views/login_view.dart';
-import 'package:d3d_market_scanner_app/views/reset_password_view.dart';
+import 'package:d3d_market_scanner_app/authentication/email_verify_view.dart';
+import 'package:d3d_market_scanner_app/authentication/login_view.dart';
+import 'package:d3d_market_scanner_app/authentication/reset_password_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,19 +39,5 @@ class MyHome extends StatelessWidget {
             }
           }),
     );
-  }
-}
-
-class MainUI extends StatelessWidget {
-  const MainUI({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: const Text('MainUI')),
-        body: Center(
-            child: TextButton(
-                onPressed: () => FirebaseAuth.instance.signOut(),
-                child: const Text('SignOut'))));
   }
 }
