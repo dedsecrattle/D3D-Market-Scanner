@@ -7,8 +7,9 @@ class MenuItems {
   static const cot = MenuItem(Icons.currency_exchange, 'COT Report');
   static const about = MenuItem(Icons.info, 'About Us');
   static const help = MenuItem(Icons.help, 'Help');
+  static const userDashboard = MenuItem(Icons.person, 'Profile');
 
-  static const all = <MenuItem>{home, cot, about, help};
+  static const all = <MenuItem>{home, userDashboard, cot, about, help};
 }
 
 class SideMenu extends StatelessWidget {

@@ -1,6 +1,7 @@
 import 'package:d3d_market_scanner_app/home.dart';
 import 'package:d3d_market_scanner_app/pages/about_page.dart';
 import 'package:d3d_market_scanner_app/pages/help_page.dart';
+import 'package:d3d_market_scanner_app/pages/user_dashboard.dart';
 import 'package:d3d_market_scanner_app/side-menu/menu_item.dart';
 import 'package:d3d_market_scanner_app/side-menu/side_menu.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,8 @@ class _HomeControllerState extends State<HomeController> {
         return const HelpPage();
       case MenuItems.cot:
         return const Home();
+      case MenuItems.userDashboard:
+        return const DashboardPage();
       default:
         return const Home();
     }
