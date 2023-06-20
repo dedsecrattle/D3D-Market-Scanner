@@ -1,9 +1,6 @@
-import 'package:d3d_market_scanner_app/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../utils.dart';
 
@@ -42,8 +39,8 @@ class _ResetPasswordState extends State<ResetPassword> {
           children: [
             Column(
               children: [
-                Column(
-                  children: const [
+                const Column(
+                  children: [
                     Text(
                       "Reset Password",
                       style: TextStyle(
@@ -108,9 +105,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                 const SizedBox(
                   height: 20,
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text("Dont have an account?"),
                     Text(
                       "Sign Up",

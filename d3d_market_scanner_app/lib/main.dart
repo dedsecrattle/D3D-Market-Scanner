@@ -1,17 +1,14 @@
 import 'package:d3d_market_scanner_app/authentication/auth_page.dart';
-import 'package:d3d_market_scanner_app/home.dart';
 import 'package:d3d_market_scanner_app/utils.dart';
 import 'package:d3d_market_scanner_app/authentication/email_verify_view.dart';
-import 'package:d3d_market_scanner_app/authentication/login_view.dart';
-import 'package:d3d_market_scanner_app/authentication/reset_password_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'firebase_options.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(MaterialApp(
     title: 'D3D Market Scanner',
     debugShowCheckedModeBanner: false,

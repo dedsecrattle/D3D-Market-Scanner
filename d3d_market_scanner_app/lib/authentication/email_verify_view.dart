@@ -74,8 +74,8 @@ class _VerifyEmailState extends State<VerifyEmail> {
             children: [
               Column(
                 children: [
-                  Column(
-                    children: const [
+                  const Column(
+                    children: [
                       Text(
                         "Verify Your Email",
                         style: TextStyle(
@@ -129,9 +129,9 @@ class _VerifyEmailState extends State<VerifyEmail> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [],
+                    children: [],
                   )
                 ],
               ),

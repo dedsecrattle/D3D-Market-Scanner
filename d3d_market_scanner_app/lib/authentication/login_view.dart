@@ -1,9 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:async';
+
 import 'package:d3d_market_scanner_app/utils.dart';
 import 'package:d3d_market_scanner_app/authentication/reset_password_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Login extends StatefulWidget {
   final VoidCallback onClickedSignup;
@@ -25,11 +30,15 @@ class _LoginState extends State<Login> {
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    emailFocusNode.dispose();
+    passwordFocusNode.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
+    super.initState();
+
     passwordFocusNode.addListener(() {
       if (passwordFocusNode.hasFocus) {
         setState(() {
@@ -44,6 +53,9 @@ class _LoginState extends State<Login> {
 
     emailFocusNode.addListener(() {
       if (emailFocusNode.hasFocus) {
+        if (animationType == 'hands_up') {
+          animationType = 'hands_down';
+        }
         setState(() {
           animationType = 'test';
         });
@@ -53,8 +65,6 @@ class _LoginState extends State<Login> {
         });
       }
     });
-
-    super.initState();
   }
 
   @override
@@ -96,7 +106,7 @@ class _LoginState extends State<Login> {
                 ),
                 child: Column(
                   children: <Widget>[
-                    TextFormField(
+                    TextField(
                       decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: "Email",
@@ -106,15 +116,24 @@ class _LoginState extends State<Login> {
                       controller: emailController,
                     ),
                     const Divider(),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Password",
-                        contentPadding: EdgeInsets.all(20),
+                    Focus(
+                      onFocusChange: (hasFocus) {
+                        if (hasFocus) {
+                          animationType = 'hands_up';
+                        } else {
+                          animationType = 'hands_down';
+                        }
+                      },
+                      child: TextField(
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Password",
+                          contentPadding: EdgeInsets.all(20),
+                        ),
+                        controller: passwordController,
+                        focusNode: passwordFocusNode,
                       ),
-                      controller: passwordController,
-                      focusNode: passwordFocusNode,
                     ),
                   ],
                 ),
@@ -169,6 +188,13 @@ class _LoginState extends State<Login> {
   }
 
   Future signIn() async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: ((context) => const SpinKitCircle(
+              color: Colors.pink,
+            )));
+
     setState(() {
       animationType = 'hands_down';
     });
@@ -179,11 +205,13 @@ class _LoginState extends State<Login> {
       setState(() {
         animationType = "success";
       });
+      Navigator.of(context).popUntil((route) => route.isFirst);
     } on FirebaseAuthException catch (e) {
       setState(() {
         animationType = "fail";
       });
       Utils.showSnackBar(e.message);
+      Navigator.of(context).pop();
     }
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HelpPage extends StatefulWidget {
+  const HelpPage({super.key});
+
   @override
   _HelpPageState createState() => _HelpPageState();
 }
@@ -17,7 +19,7 @@ class _HelpPageState extends State<HelpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Help and Support',
           style: TextStyle(
             color: Colors.white,
@@ -28,18 +30,18 @@ class _HelpPageState extends State<HelpPage> {
         backgroundColor: Colors.purple[300],
       ),
       body: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Name',
                   border: OutlineInputBorder(),
                 ),
-                style: TextStyle(fontSize: 16.0),
+                style: const TextStyle(fontSize: 16.0),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter your name';
@@ -52,13 +54,13 @@ class _HelpPageState extends State<HelpPage> {
                   });
                 },
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
                 ),
-                style: TextStyle(fontSize: 16.0),
+                style: const TextStyle(fontSize: 16.0),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter your email';
@@ -71,13 +73,13 @@ class _HelpPageState extends State<HelpPage> {
                   });
                 },
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Phone Number',
                   border: OutlineInputBorder(),
                 ),
-                style: TextStyle(fontSize: 16.0),
+                style: const TextStyle(fontSize: 16.0),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter your phone number';
@@ -90,13 +92,13 @@ class _HelpPageState extends State<HelpPage> {
                   });
                 },
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Query',
                   border: OutlineInputBorder(),
                 ),
-                style: TextStyle(fontSize: 16.0),
+                style: const TextStyle(fontSize: 16.0),
                 maxLines: 5,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -110,11 +112,10 @@ class _HelpPageState extends State<HelpPage> {
                   });
                 },
               ),
-              SizedBox(height: 32.0),
+              const SizedBox(height: 32.0),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-
                     print('Name: $_name');
                     print('Email: $_email');
                     print('Phone Number: $_phoneNumber');
@@ -122,11 +123,11 @@ class _HelpPageState extends State<HelpPage> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.purple[300],
+                  backgroundColor: Colors.purple[300],
                   elevation: 4.0,
-                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
                 ),
-                child: Text(
+                child: const Text(
                   'Submit',
                   style: TextStyle(
                     fontSize: 18.0,
@@ -142,5 +143,3 @@ class _HelpPageState extends State<HelpPage> {
     );
   }
 }
-
-

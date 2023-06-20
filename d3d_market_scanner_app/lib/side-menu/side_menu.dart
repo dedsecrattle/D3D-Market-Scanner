@@ -1,4 +1,5 @@
 import 'package:d3d_market_scanner_app/side-menu/menu_item.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MenuItems {
@@ -31,8 +32,24 @@ class SideMenu extends StatelessWidget {
             const Spacer(),
             ...MenuItems.all.map(buildMenuItem).toList(),
             const Spacer(
-              flex: 2,
-            )
+              flex: 1,
+            ),
+            Center(
+                child: Padding(
+              padding: const EdgeInsets.only(bottom: 50.0),
+              child: ElevatedButton.icon(
+                onPressed: () => FirebaseAuth.instance.signOut(),
+                icon: const Icon(
+                  Icons.logout,
+                  color: Colors.pink,
+                ),
+                label: const Text(
+                  'Log Out',
+                  style: TextStyle(color: Colors.pink),
+                ),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+              ),
+            ))
           ],
         )),
       ),

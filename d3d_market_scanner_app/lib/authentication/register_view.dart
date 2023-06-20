@@ -1,8 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:d3d_market_scanner_app/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Register extends StatefulWidget {
   final Function() onClickedSignIn;
@@ -157,6 +160,12 @@ class _RegisterState extends State<Register> {
   }
 
   Future signUp() async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: ((context) => const SpinKitCircle(
+              color: Colors.pink,
+            )));
     setState(() {
       animationType = 'hands_down';
     });
@@ -167,11 +176,13 @@ class _RegisterState extends State<Register> {
       setState(() {
         animationType = 'success';
       });
+      Navigator.of(context).popUntil((route) => route.isFirst);
     } on FirebaseAuthException catch (e) {
       setState(() {
         animationType = 'fail';
       });
       Utils.showSnackBar(e.message);
+      Navigator.of(context).pop();
     }
   }
 }
