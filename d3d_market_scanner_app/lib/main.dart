@@ -1,5 +1,4 @@
 import 'package:d3d_market_scanner_app/authentication/auth_page.dart';
-import 'package:d3d_market_scanner_app/pages/user_dashboard.dart';
 import 'package:d3d_market_scanner_app/utils.dart';
 import 'package:d3d_market_scanner_app/authentication/email_verify_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';

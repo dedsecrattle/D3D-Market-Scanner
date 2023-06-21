@@ -82,7 +82,7 @@ class FAQCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FAQCardState createState() => _FAQCardState();
+  State<FAQCard> createState() => _FAQCardState();
 }
 
 class _FAQCardState extends State<FAQCard> {

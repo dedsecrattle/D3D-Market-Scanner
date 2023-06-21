@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:async';
-
 import 'package:d3d_market_scanner_app/utils.dart';
 import 'package:d3d_market_scanner_app/authentication/reset_password_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -194,7 +193,6 @@ class _LoginState extends State<Login> {
         builder: ((context) => const SpinKitCircle(
               color: Colors.pink,
             )));
-
     setState(() {
       animationType = 'hands_down';
     });
@@ -205,7 +203,7 @@ class _LoginState extends State<Login> {
       setState(() {
         animationType = "success";
       });
-      Navigator.of(context).popUntil((route) => route.isFirst);
+      Navigator.of(context).pop();
     } on FirebaseAuthException catch (e) {
       setState(() {
         animationType = "fail";

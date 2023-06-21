@@ -1,7 +1,6 @@
 import 'package:d3d_market_scanner_app/side-menu/side_menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -12,7 +11,6 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final _nameController = TextEditingController();
   String _photoURL = "";
   Future<User?> getUser() async {
@@ -21,13 +19,8 @@ class _DashboardPageState extends State<DashboardPage> {
 
   Future<void> updateUserProfile(String name) async {
     User? user = _auth.currentUser;
-
     if (user != null) {
       await user.updateDisplayName(name);
-      await _firestore.collection('users').doc(user.uid).update({
-        'name': name,
-      });
-      setState(() {});
     }
   }
 
@@ -36,10 +29,6 @@ class _DashboardPageState extends State<DashboardPage> {
 
     if (user != null) {
       await user.updatePhotoURL(photoURL);
-      await _firestore.collection('users').doc(user.uid).update({
-        'photoURL': photoURL,
-      });
-      setState(() {});
     }
   }
 
