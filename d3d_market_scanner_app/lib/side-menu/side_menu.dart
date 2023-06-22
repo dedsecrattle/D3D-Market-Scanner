@@ -6,10 +6,10 @@ class MenuItems {
   static const home = MenuItem(Icons.home, 'Home');
   static const cot = MenuItem(Icons.currency_exchange, 'COT Report');
   static const about = MenuItem(Icons.info, 'About Us');
-  static const help = MenuItem(Icons.help, 'Help');
   static const userDashboard = MenuItem(Icons.person, 'Profile');
   static const summary = MenuItem(Icons.document_scanner, 'Market Summary');
   static const chart = MenuItem(Icons.candlestick_chart, 'Live Chart');
+  static const retail = MenuItem(Icons.sentiment_neutral, "Retail Sentiment");
 
   static const all = <MenuItem>{
     home,
@@ -17,8 +17,8 @@ class MenuItems {
     userDashboard,
     chart,
     cot,
-    about,
-    help
+    retail,
+    about
   };
 }
 

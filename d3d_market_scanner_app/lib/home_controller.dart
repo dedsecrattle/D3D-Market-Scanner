@@ -2,7 +2,7 @@ import 'package:d3d_market_scanner_app/home.dart';
 import 'package:d3d_market_scanner_app/pages/about_page.dart';
 import 'package:d3d_market_scanner_app/pages/chart_page.dart';
 import 'package:d3d_market_scanner_app/pages/cot_report.dart';
-import 'package:d3d_market_scanner_app/pages/help_page.dart';
+import 'package:d3d_market_scanner_app/pages/retail_sentiment.dart';
 import 'package:d3d_market_scanner_app/pages/summary_page.dart';
 import 'package:d3d_market_scanner_app/pages/user_dashboard.dart';
 import 'package:d3d_market_scanner_app/side-menu/menu_item.dart';
@@ -42,8 +42,6 @@ class _HomeControllerState extends State<HomeController> {
         return const Home();
       case MenuItems.about:
         return const AboutPage();
-      case MenuItems.help:
-        return const HelpPage();
       case MenuItems.cot:
         return const CotReport();
       case MenuItems.userDashboard:
@@ -52,6 +50,8 @@ class _HomeControllerState extends State<HomeController> {
         return const SummaryPage();
       case MenuItems.chart:
         return const ChartPage();
+      case MenuItems.retail:
+        return const RetailSentiments();
       default:
         return const Home();
     }
