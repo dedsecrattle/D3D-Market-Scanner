@@ -1,5 +1,7 @@
 import 'package:d3d_market_scanner_app/home.dart';
 import 'package:d3d_market_scanner_app/pages/about_page.dart';
+import 'package:d3d_market_scanner_app/pages/chart_page.dart';
+import 'package:d3d_market_scanner_app/pages/cot_report.dart';
 import 'package:d3d_market_scanner_app/pages/help_page.dart';
 import 'package:d3d_market_scanner_app/pages/summary_page.dart';
 import 'package:d3d_market_scanner_app/pages/user_dashboard.dart';
@@ -43,11 +45,13 @@ class _HomeControllerState extends State<HomeController> {
       case MenuItems.help:
         return const HelpPage();
       case MenuItems.cot:
-        return const Home();
+        return const CotReport();
       case MenuItems.userDashboard:
         return const DashboardPage();
       case MenuItems.summary:
         return const SummaryPage();
+      case MenuItems.chart:
+        return const ChartPage();
       default:
         return const Home();
     }

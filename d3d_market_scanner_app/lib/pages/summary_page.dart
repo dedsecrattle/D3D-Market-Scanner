@@ -104,10 +104,15 @@ class _SummaryPageState extends State<SummaryPage> {
                     const SizedBox(height: 15),
                     CircularPercentIndicator(
                       radius: 75,
+                      animation: true,
                       backgroundColor: Colors.green,
                       progressColor: Colors.red,
                       percent: 0.5,
                       lineWidth: 25,
+                      center: const Text(
+                        '50%',
+                        style: TextStyle(fontSize: 20),
+                      ),
                     ),
                   ],
                 ),

@@ -9,8 +9,17 @@ class MenuItems {
   static const help = MenuItem(Icons.help, 'Help');
   static const userDashboard = MenuItem(Icons.person, 'Profile');
   static const summary = MenuItem(Icons.document_scanner, 'Market Summary');
+  static const chart = MenuItem(Icons.candlestick_chart, 'Live Chart');
 
-  static const all = <MenuItem>{home, summary, userDashboard, cot, about, help};
+  static const all = <MenuItem>{
+    home,
+    summary,
+    userDashboard,
+    chart,
+    cot,
+    about,
+    help
+  };
 }
 
 class SideMenu extends StatelessWidget {
