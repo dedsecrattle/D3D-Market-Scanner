@@ -77,9 +77,21 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-        )
+        ),
       ]),
     );
+  }
+
+  Text getMarketVolatility() {
+    DateTime datenow = DateTime.now().toUtc();
+    int hour = datenow.hour;
+    if (hour >= 0 && hour <= 7) {
+      return const Text('Low');
+    } else if (hour > 7 && hour <= 18) {
+      return const Text('HigH');
+    } else {
+      return const Text('Moderate');
+    }
   }
 
   Text getStatus(String session) {
