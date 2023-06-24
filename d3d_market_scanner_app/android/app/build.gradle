@@ -29,11 +29,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 
-android {                                                                                        │
-│   defaultConfig {                                                                                │
-│     minSdkVersion 19                                                                             │
-│   }                                                                                              │
-│ }    
+
 
 
 android {
@@ -49,6 +45,7 @@ android {
         jvmTarget = '1.8'
     }
 
+
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
@@ -58,7 +55,7 @@ android {
         applicationId "com.example.d3d_market_scanner_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 19
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
