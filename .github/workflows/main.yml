@@ -10,6 +10,10 @@ on:
             - develop
 name: "Build & Release"
 
+defaults:
+  run:
+   working-directory: ./d3d_market_scanner_app
+
 jobs:
     build:
         name: Build & Release
