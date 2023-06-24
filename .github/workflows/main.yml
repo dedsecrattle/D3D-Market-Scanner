@@ -32,6 +32,6 @@ jobs:
             - name: Push to Releases
               uses: ncipollo/release-action@v1
               with:
-                artifacts: "d3d_market_scanner_app/build/app/outputs/fluter-apk/*.apk"
+                artifacts: "d3d_market_scanner_app/build/app/outputs/flutter-apk/*.apk"
                 tag: v1.0.${{github.run_number}}
                 token: ${{ secrets.TOKEN }}
