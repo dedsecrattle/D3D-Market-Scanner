@@ -71,18 +71,8 @@ class _RetailSentimentsState extends State<RetailSentiments> {
                 },
               );
             } else {
-              return const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Loading the Latest Data from Server"),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    CircularProgressIndicator(),
-                  ],
-                ),
+              return const Center(
+                child: CircularProgressIndicator(),
               );
             }
           }),
