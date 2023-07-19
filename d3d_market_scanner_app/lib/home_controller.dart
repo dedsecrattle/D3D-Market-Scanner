@@ -2,6 +2,7 @@ import 'package:d3d_market_scanner_app/home.dart';
 import 'package:d3d_market_scanner_app/pages/about_page.dart';
 import 'package:d3d_market_scanner_app/pages/chart_page.dart';
 import 'package:d3d_market_scanner_app/pages/cot_report.dart';
+import 'package:d3d_market_scanner_app/pages/forex_news.dart';
 import 'package:d3d_market_scanner_app/pages/retail_sentiment.dart';
 import 'package:d3d_market_scanner_app/pages/summary_page.dart';
 import 'package:d3d_market_scanner_app/pages/user_dashboard.dart';
@@ -44,6 +45,8 @@ class _HomeControllerState extends State<HomeController> {
         return const AboutPage();
       case MenuItems.cot:
         return const CotReport();
+      case MenuItems.news:
+        return const ForexNews();
       case MenuItems.userDashboard:
         return const DashboardPage();
       case MenuItems.summary:

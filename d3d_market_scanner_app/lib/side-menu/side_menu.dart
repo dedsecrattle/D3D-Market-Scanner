@@ -10,11 +10,13 @@ class MenuItems {
   static const summary = MenuItem(Icons.document_scanner, 'Market Summary');
   static const chart = MenuItem(Icons.candlestick_chart, 'Live Chart');
   static const retail = MenuItem(Icons.sentiment_neutral, "Retail Sentiment");
+  static const news = MenuItem(Icons.newspaper, 'Forex News');
 
   static const all = <MenuItem>{
     home,
     summary,
     userDashboard,
+    news,
     chart,
     cot,
     retail,
