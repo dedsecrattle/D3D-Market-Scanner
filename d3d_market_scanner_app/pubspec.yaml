@@ -45,7 +45,7 @@ dependencies:
   webview_flutter: ^2.0.0
   http: ^1.0.0
   html: ^0.15.4
-  url_launcher: ^6.1.12
+
 
 
 

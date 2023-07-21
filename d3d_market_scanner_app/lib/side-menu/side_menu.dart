@@ -11,6 +11,7 @@ class MenuItems {
   static const chart = MenuItem(Icons.candlestick_chart, 'Live Chart');
   static const retail = MenuItem(Icons.sentiment_neutral, "Retail Sentiment");
   static const news = MenuItem(Icons.newspaper, 'Forex News');
+  static const orders = MenuItem(Icons.book, 'Order Status');
 
   static const all = <MenuItem>{
     home,
@@ -20,7 +21,7 @@ class MenuItems {
     chart,
     cot,
     retail,
-    about
+    orders
   };
 }
 

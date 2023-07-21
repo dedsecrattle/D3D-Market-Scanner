@@ -2,7 +2,6 @@ import 'package:d3d_market_scanner_app/side-menu/side_menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/dom.dart' as dom;
-import 'package:url_launcher/url_launcher.dart';
 
 class ForexNews extends StatefulWidget {
   const ForexNews({super.key});
@@ -46,14 +45,6 @@ class _ForexNewsState extends State<ForexNews> {
     });
   }
 
-  Future<void> launchURL(Uri url) async {
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +60,6 @@ class _ForexNewsState extends State<ForexNews> {
             final article = articles[index];
             return ListTile(
               contentPadding: const EdgeInsets.all(10),
-              onTap: () => launchURL(Uri.parse("https//www.fxempire.com")),
               leading: Image.network(
                 article.image,
                 fit: BoxFit.fitHeight,
