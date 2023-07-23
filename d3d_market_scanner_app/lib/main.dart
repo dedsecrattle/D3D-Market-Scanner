@@ -22,6 +22,8 @@ Future main() async {
   ));
 }
 
+bool isLoading = true;
+
 Future initData() async {
   const url = "https://d3d-financial-data-api.onrender.com/init";
   var response = await http.get(Uri.parse(url));

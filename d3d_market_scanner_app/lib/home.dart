@@ -1,5 +1,8 @@
 import 'package:d3d_market_scanner_app/side-menu/side_menu_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:timer_count_down/timer_count_down.dart';
+
+import 'main.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -78,6 +81,43 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
+        const SizedBox(
+          height: 15,
+        ),
+        isLoading
+            ? const Text(
+                "Fetching Latest Data from the Market",
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+              )
+            : const Text("App is Running with Latest Data from Market",
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+        const SizedBox(
+          height: 16,
+        ),
+        isLoading
+            ? Countdown(
+                seconds: 30,
+                build: (BuildContext context, double time) => Text(
+                  time.toString(),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                interval: const Duration(milliseconds: 100),
+                onFinished: () {
+                  setState(() {
+                    isLoading = false;
+                  });
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      backgroundColor: Colors.pink,
+                      content:
+                          Text('Successfully Fetched Latest Data from Market'),
+                    ),
+                  );
+                },
+              )
+            : Text(
+                "Data Updated on ${DateTime.now().toString().substring(0, 16)}")
       ]),
     );
   }

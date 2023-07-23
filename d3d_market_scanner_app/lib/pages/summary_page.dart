@@ -150,13 +150,32 @@ class _SummaryPageState extends State<SummaryPage> {
                             animation: true,
                             backgroundColor: Colors.green,
                             progressColor: Colors.red,
-                            percent: getPercentage(),
+                            percent: technicalData[selectedOption]["SELL"] >=
+                                    technicalData[selectedOption]["BUY"]
+                                ? getPercentage()
+                                : 1 - getPercentage(),
                             lineWidth: 25,
                             center: Text(
                               "${(getPercentage() * 100).round().toString()}%",
                               style: const TextStyle(fontSize: 20),
                             ),
                           ),
+                          const SizedBox(height: 15),
+                          ExpansionTile(
+                            title: const Text(
+                                "How to Interpret the Scores and D3D Technical Indicator?"),
+                            children: [
+                              Container(
+                                color: Colors.black12,
+                                padding: const EdgeInsets.all(20),
+                                width: double.infinity,
+                                child: const Text(
+                                  "The score is based on a scale of -100 to 100 where -ve score means a potential Sell/Short Trade and +ve score means a potential Buy/Long Trade and for the D3D Technical Indicator, Red Color means the potential Sell Oppurtunity and Green Color means potential Buy Oppurtunity , the Percentage in the Center is the Maximum of BUY/SELL Probability",
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                              ),
+                            ],
+                          )
                         ],
                       ),
                     ),
@@ -171,6 +190,10 @@ class _SummaryPageState extends State<SummaryPage> {
     int buy = technicalData[selectedOption]["BUY"];
     int sell = technicalData[selectedOption]["SELL"];
     int total = buy + sell;
-    return double.parse((sell / total).toStringAsFixed(2));
+    if (sell >= buy) {
+      return double.parse((sell / total).toStringAsFixed(2));
+    } else {
+      return double.parse((buy / total).toStringAsFixed(2));
+    }
   }
 }
