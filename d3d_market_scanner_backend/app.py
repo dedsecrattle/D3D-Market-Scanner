@@ -1,43 +1,60 @@
-from flask import Flask, jsonify, request, render_template
-from scrapper import *
-from summary import *
-import concurrent.futures
+from flask import Flask, request, render_template
+from utils.return_data import *
+from utils.update_data import check_collect_data
+from utils.collect_data import *
+from calculate.summarize import *
+app =   Flask(__name__)
 
-app = Flask(__name__)
-
+json_data = open("./data/data.json")
+data = json.load(json_data)
+cot = data["cot-data"]
+print(cot)
+json_data.close()
 
 @app.route('/')
 def Home():
-    return render_template('/index.html')
+    return render_template('/index.html');
+
+@app.route('/init', methods = ['GET'])
+def init():
+    if(request.method == 'GET'):
+        check_collect_data()
+        response = {}
+        for pair in all_pairs:
+            response[pair] = get_summary(pair)
+        return response
+
+@app.route('/retail', methods = ['GET'])
+def retail():
+    if(request.method == 'GET'):
+        response = return_retail()
+        return response
+
+@app.route('/cot', methods = ['GET'])
+def cot():
+    if(request.method == 'GET'):
+        response = return_cot()
+        return response
+
+@app.route('/fundamental', methods = ['GET'])
+def fundamental():
+    if(request.method == 'GET'):
+        response = return_fundamental()
+        return response
+    
+@app.route('/technical', methods = ['GET'])
+def technical():
+    if(request.method == 'GET'):
+        response = return_technical()
+        return response
+    
+@app.route('/seasonality', methods = ['GET'])
+def seasonality():
+    if(request.method == 'GET'):
+        response = return_seasonality()
+        return response
 
 
-@app.route('/fundamental-data', methods=['GET'])
-def return_fundamental():
-    if (request.method == 'GET'):    
-        with concurrent.futures.ThreadPoolExecutor() as executor:
-            for i in fundamental_urls:
-                executor.submit(get_fundamental_data, i)
-        return jsonify(fundamental_data)
-
-
-@app.route('/cot-data', methods=['GET'])
-def return_cot():
-    if (request.method == 'GET'):
-
-        with concurrent.futures.ThreadPoolExecutor() as executor:
-            for j in cot_currency_codes:
-                executor.submit(get_cot_data, j)
-
-        return jsonify(cot_data)
-
-
-@app.route('/retail-data', methods=['GET'])
-def return_retail():
-    if (request.method == 'GET'):
-        get_retail_data()
-
-        return jsonify(retail_data)
-
-
-if __name__ == '__main__':
+        
+if __name__=='__main__':
     app.run()
