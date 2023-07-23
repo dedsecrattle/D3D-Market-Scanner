@@ -98,8 +98,8 @@ class _RetailSentimentsState extends State<RetailSentiments> {
   }
 
   Future<dynamic> fetchRetail() async {
-    var response = await http.get(
-        Uri.parse("https://d3d-financial-data-api.onrender.com/retail-data"));
+    var response = await http
+        .get(Uri.parse("https://d3d-financial-data-api.onrender.com/retail"));
 
     return jsonDecode(response.body);
   }

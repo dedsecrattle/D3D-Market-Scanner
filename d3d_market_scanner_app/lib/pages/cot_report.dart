@@ -98,7 +98,7 @@ class _CotReportState extends State<CotReport> {
 
   Future<dynamic> fetchCot() async {
     var response = await http
-        .get(Uri.parse("https://d3d-financial-data-api.onrender.com/cot-data"));
+        .get(Uri.parse("https://d3d-financial-data-api.onrender.com/cot"));
     return jsonDecode(response.body);
   }
 }
