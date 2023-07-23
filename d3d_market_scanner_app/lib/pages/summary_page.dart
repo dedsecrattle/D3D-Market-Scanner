@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'package:d3d_market_scanner_app/side-menu/side_menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:http/http.dart' as http;
 
 class SummaryPage extends StatefulWidget {
   const SummaryPage({Key? key}) : super(key: key);
@@ -10,6 +12,36 @@ class SummaryPage extends StatefulWidget {
 }
 
 class _SummaryPageState extends State<SummaryPage> {
+  var data = {};
+  var technicalData = {};
+  bool isLoadingData = true;
+  bool isLoadingTechnical = true;
+
+  @override
+  void initState() {
+    super.initState();
+    updateSummary();
+    updateTechnical();
+  }
+
+  Future updateSummary() async {
+    const url = 'https://d3d-financial-data-api.onrender.com/init';
+    final response = await http.get(Uri.parse(url));
+    setState(() {
+      data = jsonDecode(response.body);
+      isLoadingData = false;
+    });
+  }
+
+  Future updateTechnical() async {
+    const url = 'https://d3d-financial-data-api.onrender.com/technical';
+    final response = await http.get(Uri.parse(url));
+    setState(() {
+      technicalData = jsonDecode(response.body);
+      isLoadingTechnical = false;
+    });
+  }
+
   Widget buildWidget(String? selectedOption) {
     return DataTable(
       columns: const <DataColumn>[
@@ -27,15 +59,15 @@ class _SummaryPageState extends State<SummaryPage> {
         ),
       ],
       rows: <DataRow>[
-        buildRow("Interest Rate", "0"),
-        buildRow("GBP Growth", "0"),
-        buildRow("Inflation Rate", "0"),
-        buildRow("Unemployment Rate", "0"),
-        buildRow("COT Report", "0"),
-        buildRow("Retail Sentiment", "0"),
-        buildRow("Technicals", "0"),
-        buildRow("Seasonality", "0"),
-        buildRow("Total", "0"),
+        buildRow("Interest Rate", data[selectedOption][0].toString()),
+        buildRow("GBP Growth", data[selectedOption][1].toString()),
+        buildRow("Inflation Rate", data[selectedOption][2].toString()),
+        buildRow("Unemployment Rate", data[selectedOption][3].toString()),
+        buildRow("COT Report", data[selectedOption][4].toString()),
+        buildRow("Retail Sentiment", data[selectedOption][5].toString()),
+        buildRow("Technicals", data[selectedOption][6].toString()),
+        buildRow("Seasonality", data[selectedOption][7].toString()),
+        buildRow("Total", data[selectedOption][8].toString()),
       ],
     );
   }
@@ -62,65 +94,83 @@ class _SummaryPageState extends State<SummaryPage> {
       ),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          return SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: constraints.maxHeight,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    DropdownButton<String>(
-                      itemHeight: 75,
-                      isExpanded: true,
-                      focusColor: Colors.grey,
-                      iconSize: 25,
-                      value: selectedOption,
-                      onChanged: (newValue) {
-                        setState(() {
-                          selectedOption = newValue;
-                          displayedWidget = buildWidget(newValue);
-                        });
-                      },
-                      items: <String>[
-                        'EURUSD',
-                        'USDJPY',
-                        'GBPUSD',
-                        'USDCHF',
-                        'AUDUSD',
-                        'NZDUSD',
-                        'USDCAD'
-                      ].map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
+          return isLoadingData || isLoadingTechnical
+              ? const Center(child: CircularProgressIndicator())
+              : SingleChildScrollView(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: constraints.maxHeight,
                     ),
-                    const SizedBox(height: 15),
-                    displayedWidget ?? buildWidget("EURUSD"),
-                    const SizedBox(height: 15),
-                    CircularPercentIndicator(
-                      radius: 75,
-                      animation: true,
-                      backgroundColor: Colors.green,
-                      progressColor: Colors.red,
-                      percent: 0.5,
-                      lineWidth: 25,
-                      center: const Text(
-                        '50%',
-                        style: TextStyle(fontSize: 20),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          DropdownButton<String>(
+                            itemHeight: 75,
+                            isExpanded: true,
+                            focusColor: Colors.grey,
+                            iconSize: 25,
+                            value: selectedOption,
+                            onChanged: (newValue) {
+                              setState(() {
+                                selectedOption = newValue;
+                                displayedWidget = buildWidget(newValue);
+                              });
+                            },
+                            items: <String>[
+                              'EURUSD',
+                              'USDJPY',
+                              'GBPUSD',
+                              'USDCHF',
+                              'AUDUSD',
+                              'NZDUSD',
+                              'USDCAD'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                          ),
+                          const SizedBox(height: 15),
+                          displayedWidget ?? buildWidget("EURUSD"),
+                          const SizedBox(height: 15),
+                          const Center(
+                            child: Text(
+                              "D3D Technical Indicator",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          CircularPercentIndicator(
+                            radius: 75,
+                            animation: true,
+                            backgroundColor: Colors.green,
+                            progressColor: Colors.red,
+                            percent: getPercentage(),
+                            lineWidth: 25,
+                            center: Text(
+                              "${(getPercentage() * 100).round().toString()}%",
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            ),
-          );
+                  ),
+                );
         },
       ),
     );
+  }
+
+  double getPercentage() {
+    int buy = technicalData[selectedOption]["BUY"];
+    int sell = technicalData[selectedOption]["SELL"];
+    int total = buy + sell;
+    return double.parse((sell / total).toStringAsFixed(2));
   }
 }

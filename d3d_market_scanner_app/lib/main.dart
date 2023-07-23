@@ -5,9 +5,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'firebase_options.dart';
+import 'package:http/http.dart' as http;
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  initData();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(MaterialApp(
     title: 'D3D Market Scanner',
@@ -18,6 +20,12 @@ Future main() async {
     ),
     home: const MyHome(),
   ));
+}
+
+Future initData() async {
+  const url = "https://d3d-financial-data-api.onrender.com/init";
+  var response = await http.get(Uri.parse(url));
+  return response;
 }
 
 class MyHome extends StatelessWidget {
