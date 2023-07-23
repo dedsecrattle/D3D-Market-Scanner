@@ -60,7 +60,7 @@ class _SummaryPageState extends State<SummaryPage> {
       ],
       rows: <DataRow>[
         buildRow("Interest Rate", data[selectedOption][0].toString()),
-        buildRow("GBP Growth", data[selectedOption][1].toString()),
+        buildRow("GDP Growth", data[selectedOption][1].toString()),
         buildRow("Inflation Rate", data[selectedOption][2].toString()),
         buildRow("Unemployment Rate", data[selectedOption][3].toString()),
         buildRow("COT Report", data[selectedOption][4].toString()),

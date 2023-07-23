@@ -9,7 +9,6 @@ import 'package:http/http.dart' as http;
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  initData();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(MaterialApp(
     title: 'D3D Market Scanner',
