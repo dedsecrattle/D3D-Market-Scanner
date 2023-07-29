@@ -95,7 +95,20 @@ class _SummaryPageState extends State<SummaryPage> {
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return isLoadingData || isLoadingTechnical
-              ? const Center(child: CircularProgressIndicator())
+              ? Center(
+                  child: Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 3,
+                    ),
+                    const CircularProgressIndicator(),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    const Text(
+                        "Please Hold on for a moment , as we are using Free Servers for the Deployment it can take upto 1 Minute to fetch the Data from the Back-end")
+                  ],
+                ))
               : SingleChildScrollView(
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
